@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@source "..";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: oklch(0.04 0.01 260);
+  --foreground: oklch(0.98 0 0);
+  --muted: oklch(0.18 0.01 260);
+  --muted-foreground: oklch(0.65 0.02 260);
+  --accent: oklch(0.82 0.11 245);
+  --accent-foreground: oklch(0.1 0.02 260);
+  --primary: oklch(0.78 0.13 245);
+  --primary-foreground: oklch(0.08 0.02 260);
+  --card: oklch(0.08 0.015 260);
+  --card-foreground: oklch(0.98 0 0);
+  --border: oklch(0.22 0.015 260 / 60%);
+  --ring: oklch(0.78 0.13 245);
+
+  --glow-blue: radial-gradient(ellipse at center, oklch(0.55 0.18 245 / 0.45), transparent 70%);
+  --card-gradient: linear-gradient(155deg, oklch(0.12 0.025 250 / 0.9), oklch(0.06 0.01 260 / 0.4));
+  --card-gradient-bright: linear-gradient(155deg, oklch(0.78 0.13 245), oklch(0.55 0.16 240));
+}
+
+:root.light {
+  --background: oklch(0.99 0.003 260);
+  --foreground: oklch(0.15 0.02 260);
+  --muted: oklch(0.94 0.005 260);
+  --muted-foreground: oklch(0.45 0.02 260);
+  --accent: oklch(0.55 0.18 245);
+  --accent-foreground: oklch(0.99 0 0);
+  --primary: oklch(0.5 0.18 245);
+  --primary-foreground: oklch(0.99 0 0);
+  --card: oklch(0.97 0.005 260);
+  --card-foreground: oklch(0.15 0.02 260);
+  --border: oklch(0.15 0.02 260 / 15%);
+  --ring: oklch(0.5 0.18 245);
+
+  --glow-blue: radial-gradient(ellipse at center, oklch(0.7 0.15 245 / 0.25), transparent 70%);
+  --card-gradient: linear-gradient(155deg, oklch(0.98 0.01 250 / 0.95), oklch(0.93 0.01 260 / 0.6));
+  --card-gradient-bright: linear-gradient(155deg, oklch(0.65 0.16 245), oklch(0.5 0.18 240));
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: oklch(0.78 0.13 245);
+    color: oklch(0.08 0.02 260);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .font-serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .accent-letter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    display: inline-block;
+  }
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .glow-bg {
+    background-image: var(--glow-blue);
+  }
+  .card-surface {
+    background-image: var(--card-gradient);
+    border: 1px solid oklch(0.3 0.04 250 / 0.5);
+    backdrop-filter: blur(8px);
+  }
+  .card-bright {
+    background-image: var(--card-gradient-bright);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
