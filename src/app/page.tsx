@@ -164,16 +164,12 @@ function Hero() {
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full overflow-hidden px-6 md:px-12 pt-28 pb-16">
+    <section
+      ref={ref}
+      className="relative min-h-screen w-full overflow-hidden px-6 md:px-12 pt-28 pb-16"
+    >
       <motion.div style={{ opacity }} className="pointer-events-none absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover"
-          aria-hidden
-        >
+        <video autoPlay loop muted playsInline className="h-full w-full object-cover" aria-hidden>
           <source src="/home/HomeHeroVideo.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-background/35" />
@@ -181,57 +177,57 @@ function Hero() {
       </motion.div>
 
       <div className="relative z-10">
-      {/* Giant name */}
-      <motion.div style={{ y, opacity }} className="relative mt-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[18vw] md:text-[15vw] leading-[0.9] uppercase break-words"
-        >
-          JORDAN
-          <sup className="text-xs md:text-sm align-super opacity-60 ml-2">®</sup>
-        </motion.h1>
-        <p className="text-right text-xs tracking-widest text-muted-foreground -mt-2">©2026</p>
-      </motion.div>
-
-      {/* Services list */}
-      <div className="mt-10 md:mt-20 grid md:grid-cols-2 gap-10">
-        <div className="flex flex-col justify-end gap-6">
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, y: 20 }}
+        {/* Giant name */}
+        <motion.div style={{ y, opacity }} className="relative mt-6">
+          <motion.h1
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            whileHover={{ scale: 1.03 }}
-            className="self-start rounded-full border border-foreground/40 px-6 py-3 text-xs tracking-widest hover:bg-foreground hover:text-background transition-colors"
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-[18vw] md:text-[15vw] leading-[0.9] uppercase break-words"
           >
-            GET IN TOUCH
-          </motion.a>
-          <p className="max-w-md text-sm text-muted-foreground">
-            Building scalable digital products through{" "}
-            <span className="font-serif-italic text-foreground">
-              clean architecture and modern engineering.
-            </span>
-          </p>
-        </div>
-        <ul className="flex flex-col items-end gap-2 md:gap-3 text-lg md:text-2xl font-light">
-          {services.map((s, i) => (
-            <motion.li
-              key={s}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + i * 0.07, duration: 0.6 }}
-              className="text-right text-foreground/85"
+            JORDAN
+            <sup className="text-xs md:text-sm align-super opacity-60 ml-2">®</sup>
+          </motion.h1>
+          <p className="text-right text-xs tracking-widest text-muted-foreground -mt-2">©2026</p>
+        </motion.div>
+
+        {/* Services list */}
+        <div className="mt-10 md:mt-20 grid md:grid-cols-2 gap-10">
+          <div className="flex flex-col justify-end gap-6">
+            <motion.a
+              href="#contact"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              whileHover={{ scale: 1.03 }}
+              className="self-start rounded-full border border-foreground/40 px-6 py-3 text-xs tracking-widest hover:bg-foreground hover:text-background transition-colors"
             >
-              <span className="font-serif-italic text-accent mr-2">
-                {String.fromCharCode(9312 + i)}
+              GET IN TOUCH
+            </motion.a>
+            <p className="max-w-md text-sm text-muted-foreground">
+              Building scalable digital products through{" "}
+              <span className="font-serif-italic text-foreground">
+                clean architecture and modern engineering.
               </span>
-              {s}
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+            </p>
+          </div>
+          <ul className="flex flex-col items-end gap-2 md:gap-3 text-lg md:text-2xl font-light">
+            {services.map((s, i) => (
+              <motion.li
+                key={s}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 + i * 0.07, duration: 0.6 }}
+                className="text-right text-foreground/85"
+              >
+                <span className="font-serif-italic text-accent mr-2">
+                  {String.fromCharCode(9312 + i)}
+                </span>
+                {s}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -922,7 +918,10 @@ function Contact() {
                 <div>
                   <p className="section-label">{c.label}</p>
                   {c.href ? (
-                    <a href={c.href} className="mt-3 block text-foreground/90 hover:text-accent transition-colors">
+                    <a
+                      href={c.href}
+                      className="mt-3 block text-foreground/90 hover:text-accent transition-colors"
+                    >
                       {c.value}
                     </a>
                   ) : (
