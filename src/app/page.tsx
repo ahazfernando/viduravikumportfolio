@@ -101,6 +101,7 @@ function StickyNav() {
           { label: "SERVICE", href: "#service" },
           { label: "PROJECTS", href: "#about" },
           { label: "EXPERIENCE", href: "#experience" },
+          { label: "EDUCATION", href: "#education" },
           { label: "CONTACT", href: "#contact" },
         ].map((item) => (
           <li key={item.label}>
@@ -137,6 +138,7 @@ export default function Home() {
       {/* <Growth /> */}
       <Toolkit />
       <Journey />
+      <Education />
       <Contact />
       <Footer />
     </main>
@@ -851,6 +853,81 @@ function Journey() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────── EDUCATION ───────────────────────── */
+
+function Education() {
+  const entries = [
+    {
+      num: "01",
+      when: "Present",
+      institution: "Chartered Institute of Marketing (CIM)",
+      location: "UK",
+      qualification: "PGD in Marketing",
+      note: "Currently in progress",
+    },
+    {
+      num: "02",
+      when: "Oct. 2022 – Feb. 2026",
+      institution: "University of Staffordshire",
+      location: "London, UK",
+      qualification: "BSc. (Hons) in Computer Science (First Class Honours) — APIIT Sri Lanka",
+    },
+    {
+      num: "03",
+      when: "May 2019 – June 2022",
+      institution: "St. Anthony's College",
+      location: "Kandy, SL",
+      qualification: "G.C.E Advanced Level - Physical Science",
+    },
+  ];
+
+  return (
+    <section id="education" className="relative px-6 md:px-12 py-32">
+      <SectionLabel num="06" label="EDUCATION" />
+      <Reveal delay={0.1}>
+        <h2 className="mt-6 font-display uppercase text-6xl md:text-8xl">
+          ACAD<span className="accent-letter">E</span>MIC
+          <br />
+          FOUN<span className="accent-letter">D</span>ATIONS
+        </h2>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <p className="mt-8 max-w-xl text-muted-foreground leading-relaxed">
+          A foundation in computer science and physical sciences, now extended with marketing
+          strategy through the Chartered Institute of Marketing PGD.
+        </p>
+      </Reveal>
+
+      <div className="mt-20 space-y-0">
+        {entries.map((entry, i) => (
+          <Reveal key={entry.num} delay={i * 0.05}>
+            <div className="grid md:grid-cols-12 gap-6 py-12 border-t border-border">
+              <div className="md:col-span-3">
+                <p className="text-xs tracking-widest text-accent">({entry.num})</p>
+                <p className="mt-3 font-serif-italic text-lg">{entry.when}</p>
+              </div>
+              <div className="md:col-span-9">
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <h3 className="font-display uppercase text-2xl md:text-3xl">
+                    {entry.institution}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{entry.location}</p>
+                </div>
+                <p className="mt-4 font-serif-italic text-lg text-foreground/90">
+                  {entry.qualification}
+                </p>
+                {entry.note ? (
+                  <p className="mt-3 text-xs tracking-widest text-accent uppercase">{entry.note}</p>
+                ) : null}
+              </div>
             </div>
           </Reveal>
         ))}
