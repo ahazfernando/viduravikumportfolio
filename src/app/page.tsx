@@ -95,10 +95,17 @@ function StickyNav() {
         <p className="mt-1 text-foreground">KANDY, SRI LANKA</p>
       </div>
       <ul className="hidden md:flex flex-row items-center gap-6 text-xs tracking-widest text-foreground/80">
-        {["HOME", "ABOUT", "SERVICE", "PROJECTS", "EXPERIENCE", "CONTACT"].map((l) => (
-          <li key={l}>
-            <a href={`#${l.toLowerCase()}`} className="hover:text-accent transition-colors">
-              {l}
+        {[
+          { label: "HOME", href: "#" },
+          { label: "ABOUT", href: "#about" },
+          { label: "SERVICE", href: "#service" },
+          { label: "PROJECTS", href: "#about" },
+          { label: "EXPERIENCE", href: "#experience" },
+          { label: "CONTACT", href: "#contact" },
+        ].map((item) => (
+          <li key={item.label}>
+            <a href={item.href} className="hover:text-accent transition-colors">
+              {item.label}
             </a>
           </li>
         ))}
@@ -127,7 +134,7 @@ export default function Home() {
       <Hero />
       <WhatIBuild />
       <Capabilities />
-      <Growth />
+      {/* <Growth /> */}
       <Toolkit />
       <Journey />
       <Contact />
@@ -157,7 +164,23 @@ function Hero() {
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen w-full px-6 md:px-12 pt-28 pb-16">
+    <section ref={ref} className="relative min-h-screen w-full overflow-hidden px-6 md:px-12 pt-28 pb-16">
+      <motion.div style={{ opacity }} className="pointer-events-none absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+          aria-hidden
+        >
+          <source src="/home/HomeHeroVideo.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-background/30 to-background/85" />
+      </motion.div>
+
+      <div className="relative z-10">
       {/* Giant name */}
       <motion.div style={{ y, opacity }} className="relative mt-6">
         <motion.h1
@@ -208,6 +231,7 @@ function Hero() {
             </motion.li>
           ))}
         </ul>
+      </div>
       </div>
     </section>
   );
@@ -638,6 +662,7 @@ function Capabilities() {
 
 /* ───────────────────────── GROWTH ───────────────────────── */
 
+/*
 function Growth() {
   return (
     <section className="relative px-6 md:px-12 py-32">
@@ -681,6 +706,7 @@ function Growth() {
     </section>
   );
 }
+*/
 
 /* ───────────────────────── TOOLKIT ───────────────────────── */
 
@@ -870,23 +896,38 @@ function Contact() {
           </Reveal>
           <Reveal delay={0.2}>
             <a
-              href="mailto:chamuwanninayake@gmail.com"
+              href="mailto:ahazfernando@gmail.com"
               className="mt-10 inline-flex items-center justify-center rounded-full bg-accent text-accent-foreground px-10 py-4 text-sm tracking-[0.15em] font-medium hover:scale-105 transition-transform"
             >
               CONTACT ME
             </a>
           </Reveal>
 
-          <div className="mt-20 grid md:grid-cols-3 gap-10 text-left max-w-4xl mx-auto">
+          <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-left max-w-5xl mx-auto">
             {[
-              { label: "EMAIL", value: "chamuwanninayake@gmail.com" },
+              {
+                label: "EMAIL",
+                value: "ahazfernando@gmail.com",
+                href: "mailto:ahazfernando@gmail.com",
+              },
+              {
+                label: "PHONE",
+                value: "+94776992735",
+                href: "tel:+94776992735",
+              },
               { label: "LOCATION", value: "Kandy, Sri Lanka" },
               { label: "AVAILABLE", value: "Open for Web Projects, Marketing & Tutoring" },
             ].map((c) => (
               <Reveal key={c.label}>
                 <div>
                   <p className="section-label">{c.label}</p>
-                  <p className="mt-3 text-foreground/90">{c.value}</p>
+                  {c.href ? (
+                    <a href={c.href} className="mt-3 block text-foreground/90 hover:text-accent transition-colors">
+                      {c.value}
+                    </a>
+                  ) : (
+                    <p className="mt-3 text-foreground/90">{c.value}</p>
+                  )}
                 </div>
               </Reveal>
             ))}
