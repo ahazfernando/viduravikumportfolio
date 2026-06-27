@@ -1,7 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
+import { Layers } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+
+import { HeroLogoMarquee } from "@/components/hero-logo-marquee";
+import { TechIcon } from "@/components/tech-icon";
 
 function ThemeToggle() {
   const [light, setLight] = useState(false);
@@ -53,7 +57,7 @@ function Reveal({
       variants={fadeUp}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.08 }}
       transition={{ delay }}
       className={className}
     >
@@ -97,8 +101,7 @@ function StickyNav() {
       <ul className="hidden md:flex flex-row items-center gap-6 text-xs tracking-widest text-foreground/80">
         {[
           { label: "HOME", href: "#" },
-          { label: "ABOUT", href: "#about" },
-          { label: "SERVICE", href: "#service" },
+          { label: "SERVICES", href: "#service" },
           { label: "PROJECTS", href: "#about" },
           { label: "EXPERIENCE", href: "#experience" },
           { label: "EDUCATION", href: "#education" },
@@ -111,13 +114,13 @@ function StickyNav() {
           </li>
         ))}
       </ul>
-      <div className="flex items-center gap-3 text-xs tracking-widest">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3 text-xs tracking-widest">
         <ThemeToggle />
         <a
           href="#contact"
-          className="bg-foreground text-background px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+          className="shrink-0 whitespace-nowrap rounded-full bg-foreground px-3 py-2 text-[10px] text-background transition-opacity hover:opacity-90 sm:px-4 sm:text-xs"
         >
-          LET'S TALK
+          LET&apos;S TALK
         </a>
         <span className="flex flex-col gap-1">
           <span className="block h-px w-5 bg-foreground" />
@@ -130,9 +133,10 @@ function StickyNav() {
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
+    <main className="relative min-h-screen bg-background text-foreground">
       <StickyNav />
       <Hero />
+      <HeroLogoMarquee />
       <WhatIBuild />
       <Capabilities />
       {/* <Growth /> */}
@@ -151,7 +155,7 @@ function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const videoOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const services = [
     "Web Development",
@@ -170,7 +174,10 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen w-full overflow-hidden px-6 md:px-12 pt-28 pb-16"
     >
-      <motion.div style={{ opacity }} className="pointer-events-none absolute inset-0 z-0">
+      <motion.div
+        style={{ opacity: videoOpacity }}
+        className="pointer-events-none absolute inset-0 z-0"
+      >
         <video autoPlay loop muted playsInline className="h-full w-full object-cover" aria-hidden>
           <source src="/home/HomeHeroVideo.mp4" type="video/mp4" />
         </video>
@@ -180,9 +187,9 @@ function Hero() {
 
       <div className="relative z-10">
         {/* Giant name */}
-        <motion.div style={{ y, opacity }} className="relative mt-6">
+        <motion.div style={{ y }} className="relative mt-6">
           <motion.h1
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-[18vw] md:text-[15vw] leading-[0.9] uppercase break-words"
@@ -279,7 +286,7 @@ function WhatIBuild() {
   ];
 
   return (
-    <section id="about" className="relative px-6 md:px-12 py-32">
+    <section id="about" className="relative z-10 bg-background px-6 md:px-12 py-32">
       <SectionLabel num="02" label="WHAT I BUILD" />
       <Reveal delay={0.1}>
         <h2 className="mt-6 font-display uppercase text-5xl md:text-8xl max-w-5xl">
@@ -337,15 +344,12 @@ function WhatIBuild() {
               ))}
             </div>
 
-            {/* SLIIT badge */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex shrink-0 items-center gap-2">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center border"
-                style={{ background: "#2a2a3a", borderColor: "#3a3a4a" }}
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-accent"
+                aria-hidden
               >
-                <span className="text-[9px] font-bold text-white/90 leading-tight text-center">
-                  SLIIT
-                </span>
+                <Layers className="h-4 w-4" strokeWidth={1.75} />
               </div>
             </div>
           </div>
@@ -368,7 +372,7 @@ function WhatIBuild() {
               }}
             />
 
-            <div className="relative px-6 md:px-10">
+            <div className="relative z-10 bg-background px-6 md:px-10">
               {/* Meta row */}
               <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
                 <div className="flex flex-wrap items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-white/40">
@@ -615,7 +619,7 @@ function Capabilities() {
     {
       tag: "WEB",
       title: "WEB DEVELOPMENT",
-      body: "Responsive, performant websites and full-stack applications — from landing pages to complex SaaS platforms using React, Next.js and modern tooling.",
+      body: "Responsive, performant websites and full-stack applications from landing pages to complex SaaS platforms with modern tooling.",
     },
     {
       tag: "MARKETING",
@@ -635,19 +639,21 @@ function Capabilities() {
   ];
 
   return (
-    <section id="service" className="relative px-6 md:px-12 py-20">
+    <section id="service" className="relative z-10 bg-background px-6 md:px-12 py-16 md:py-20">
       <SectionLabel num="03" label="CAPABILITIES" />
-      <div className="mt-12 grid md:grid-cols-2 gap-6">
+      <div className="mt-10 grid gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
         {items.map((it, i) => (
           <Reveal key={it.tag} delay={i * 0.08}>
-            <article className="card-surface rounded-3xl p-8 md:p-10 min-h-[360px] relative overflow-hidden group">
-              <div className="absolute -top-20 -right-20 w-64 h-64 glow-bg opacity-40 group-hover:opacity-70 transition-opacity" />
+            <article className="card-surface group relative min-h-0 overflow-hidden rounded-3xl p-6 sm:p-8 md:min-h-[360px] md:p-10">
+              <div className="absolute -top-20 -right-20 h-64 w-64 glow-bg opacity-40 transition-opacity group-hover:opacity-70" />
               <p className="section-label relative">{it.tag}</p>
-              <h3 className="mt-3 font-display uppercase text-5xl md:text-6xl relative">
+              <h3 className="relative mt-3 max-w-full break-words font-display text-[clamp(1.75rem,7vw,3.75rem)] uppercase leading-[0.95] tracking-tight">
                 {it.title}
               </h3>
-              <p className="mt-5 max-w-sm text-muted-foreground relative">{it.body}</p>
-              <button className="mt-10 inline-flex items-center gap-2 rounded-full border border-foreground/30 px-5 py-2 text-xs tracking-widest hover:bg-foreground hover:text-background transition-colors relative">
+              <p className="relative mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground sm:mt-5 sm:text-base">
+                {it.body}
+              </p>
+              <button className="relative mt-8 inline-flex items-center gap-2 rounded-full border border-foreground/30 px-5 py-2 text-xs tracking-widest transition-colors hover:bg-foreground hover:text-background sm:mt-10">
                 ◂ EXPLORE
               </button>
             </article>
@@ -663,7 +669,7 @@ function Capabilities() {
 /*
 function Growth() {
   return (
-    <section className="relative px-6 md:px-12 py-32">
+    <section className="relative z-10 bg-background px-6 md:px-12 py-32">
       <SectionLabel num="05" label="PROFESSIONAL DEVELOPMENT" />
       <Reveal delay={0.1}>
         <h2 className="mt-6 font-display uppercase text-5xl md:text-8xl max-w-3xl">
@@ -735,32 +741,40 @@ function Toolkit() {
   ];
 
   return (
-    <section className="relative px-6 md:px-12 py-32">
+    <section className="relative z-10 bg-background px-6 md:px-12 py-20 md:py-32">
       <SectionLabel num="08" label="TOOLS & TECHNOLOGIES" />
       <Reveal delay={0.1}>
-        <h2 className="mt-6 font-display uppercase text-5xl md:text-8xl max-w-5xl">
+        <h2 className="mt-6 max-w-5xl font-display text-4xl uppercase sm:text-5xl md:text-8xl">
           THE T<span className="accent-letter">O</span>OLKIT
           <br />
           BEHIND TH<span className="accent-letter">E</span> CRAFT
         </h2>
       </Reveal>
 
-      <div className="mt-20 grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-5">
         {stacks.map((s, i) => (
           <Reveal key={s.tag} delay={i * 0.08}>
             <div
-              className={`${s.bright ? "card-bright" : "card-surface"} rounded-2xl p-6 min-h-[460px] relative overflow-hidden flex flex-col`}
+              className={`${s.bright ? "card-bright" : "card-surface"} relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl p-5 sm:min-h-[320px] sm:p-6 lg:min-h-[460px]`}
             >
-              <div className="flex justify-between text-xs tracking-widest opacity-70">
+              <div className="flex justify-between text-[10px] tracking-widest opacity-70 sm:text-xs">
                 <span>{s.tag}</span>
                 <span>{s.num}</span>
               </div>
               <div
                 className={`absolute inset-x-0 top-1/3 h-32 ${s.bright ? "" : "glow-bg opacity-50"}`}
               />
-              <ul className="mt-auto space-y-3 font-display uppercase text-xl relative">
+              <ul className="relative mt-auto space-y-2.5 sm:space-y-3">
                 {s.items.map((it) => (
-                  <li key={it}>{it}</li>
+                  <li
+                    key={it}
+                    className="group/item flex max-w-full items-center gap-2.5 transition-transform hover:translate-x-0.5"
+                  >
+                    <TechIcon name={it} bright={s.bright} />
+                    <span className="font-display text-base uppercase leading-snug break-words sm:text-lg md:text-xl">
+                      {it}
+                    </span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -823,7 +837,7 @@ function Journey() {
   ];
 
   return (
-    <section id="experience" className="relative px-6 md:px-12 py-32">
+    <section id="experience" className="relative z-10 bg-background px-6 md:px-12 py-32">
       <SectionLabel num="07" label="JOURNEY" />
       <Reveal delay={0.1}>
         <h2 className="mt-6 font-display uppercase text-6xl md:text-8xl">
@@ -867,18 +881,19 @@ function Education() {
   const entries = [
     {
       num: "01",
+      when: "Oct. 2022 – Feb. 2026",
+      institution: "University of Staffordshire",
+      location: "London, UK",
+      qualification: "BSc. (Hons) in Computer Science (First Class Honours) — APIIT Sri Lanka",
+      featured: true,
+    },
+    {
+      num: "02",
       when: "Present",
       institution: "Chartered Institute of Marketing (CIM)",
       location: "UK",
       qualification: "PGD in Marketing",
       note: "Currently in progress",
-    },
-    {
-      num: "02",
-      when: "Oct. 2022 – Feb. 2026",
-      institution: "University of Staffordshire",
-      location: "London, UK",
-      qualification: "BSc. (Hons) in Computer Science (First Class Honours) — APIIT Sri Lanka",
     },
     {
       num: "03",
@@ -889,8 +904,10 @@ function Education() {
     },
   ];
 
+  const [featured, ...completed] = entries;
+
   return (
-    <section id="education" className="relative px-6 md:px-12 py-32">
+    <section id="education" className="relative z-10 bg-background px-6 md:px-12 py-32">
       <SectionLabel num="06" label="EDUCATION" />
       <Reveal delay={0.1}>
         <h2 className="mt-6 font-display uppercase text-6xl md:text-8xl">
@@ -906,31 +923,78 @@ function Education() {
         </p>
       </Reveal>
 
-      <div className="mt-20 space-y-0">
-        {entries.map((entry, i) => (
-          <Reveal key={entry.num} delay={i * 0.05}>
-            <div className="grid md:grid-cols-12 gap-6 py-12 border-t border-border">
-              <div className="md:col-span-3">
-                <p className="text-xs tracking-widest text-accent">({entry.num})</p>
-                <p className="mt-3 font-serif-italic text-lg">{entry.when}</p>
-              </div>
-              <div className="md:col-span-9">
-                <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className="font-display uppercase text-2xl md:text-3xl">
-                    {entry.institution}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{entry.location}</p>
+      <div className="mt-16 space-y-4">
+        <Reveal delay={0.05}>
+          <article className="card-surface group relative overflow-hidden rounded-3xl border border-accent/25 p-8 md:p-10">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full glow-bg opacity-50 transition-opacity group-hover:opacity-80"
+            />
+            <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs tracking-widest text-accent">({featured.num})</span>
+                  {"note" in featured && featured.note ? (
+                    <span className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                      {featured.note}
+                    </span>
+                  ) : null}
                 </div>
-                <p className="mt-4 font-serif-italic text-lg text-foreground/90">
-                  {entry.qualification}
+                <h3 className="mt-4 font-display text-3xl uppercase leading-tight tracking-tight md:text-4xl lg:text-5xl">
+                  {featured.institution}
+                </h3>
+                <p className="mt-3 font-serif-italic text-lg text-foreground/90 md:text-xl">
+                  {featured.qualification}
                 </p>
-                {entry.note ? (
-                  <p className="mt-3 text-xs tracking-widest text-accent uppercase">{entry.note}</p>
-                ) : null}
+              </div>
+              <div className="shrink-0 md:text-right">
+                <p className="font-serif-italic text-base text-foreground/80 md:text-lg">
+                  {featured.when}
+                </p>
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  {featured.location}
+                </p>
               </div>
             </div>
-          </Reveal>
-        ))}
+          </article>
+        </Reveal>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {completed.map((entry, i) => (
+            <Reveal key={entry.num} delay={0.1 + i * 0.08}>
+              <article className="card-surface group relative h-full overflow-hidden rounded-3xl p-7 md:p-8">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full glow-bg opacity-30 transition-opacity group-hover:opacity-55"
+                />
+                <div className="relative">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs tracking-widest text-accent">({entry.num})</span>
+                      {"note" in entry && entry.note ? (
+                        <span className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.18em] text-accent">
+                          {entry.note}
+                        </span>
+                      ) : null}
+                    </div>
+                    <span className="text-right text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {entry.location}
+                    </span>
+                  </div>
+                  <p className="mt-3 font-serif-italic text-sm text-muted-foreground">
+                    {entry.when}
+                  </p>
+                  <h3 className="mt-4 font-display text-2xl uppercase leading-tight tracking-tight md:text-3xl">
+                    {entry.institution}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/85 md:text-[15px]">
+                    {entry.qualification}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -951,32 +1015,40 @@ function AudioWave() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative px-6 md:px-12 py-32">
-      <div className="relative rounded-[2rem] border border-border/60 overflow-hidden p-10 md:p-20 text-center">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[600px] h-[400px] glow-bg opacity-60" />
+    <section id="contact" className="relative z-10 bg-background px-6 md:px-12 py-20 md:py-32">
+      <div className="relative overflow-hidden rounded-[2rem] border border-border/60 p-6 text-center sm:p-10 md:p-20">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="h-[400px] w-[600px] glow-bg opacity-60" />
         </div>
         <div className="relative">
           <SectionLabel num="09" label="LET'S TALK" />
           <Reveal delay={0.1}>
-            <h2 className="mt-8 font-display uppercase text-5xl sm:text-6xl md:text-[6.5rem] lg:text-[8rem] leading-[0.9] tracking-tight">
-              LET'S B<span className="accent-letter">U</span>ILD
-              <br />
-              THE NEW ERA OF
-              <br />
-              INTELLIG<span className="accent-letter">E</span>NT SOFTWARE.
+            <h2 className="mx-auto mt-6 max-w-4xl font-display text-[clamp(2rem,8vw,8rem)] uppercase leading-[0.92] tracking-tight sm:mt-8">
+              <span className="block">
+                LET&apos;S{" "}
+                <span className="whitespace-nowrap">
+                  B<span className="accent-letter">U</span>ILD
+                </span>
+              </span>
+              <span className="block">THE NEW ERA OF</span>
+              <span className="block">
+                <span className="whitespace-nowrap">
+                  INTELLIG<span className="accent-letter">E</span>NT
+                </span>{" "}
+                SOFTWARE.
+              </span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <a
               href="mailto:ahazfernando@gmail.com"
-              className="mt-10 inline-flex items-center justify-center rounded-full bg-accent text-accent-foreground px-10 py-4 text-sm tracking-[0.15em] font-medium hover:scale-105 transition-transform"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-xs font-medium tracking-[0.15em] text-accent-foreground transition-transform hover:scale-105 sm:mt-10 sm:px-10 sm:py-4 sm:text-sm"
             >
               CONTACT ME
             </a>
           </Reveal>
 
-          <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-left max-w-5xl mx-auto">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-8 text-left sm:mt-20 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
             {[
               {
                 label: "EMAIL",
