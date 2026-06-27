@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 import { Layers } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { HeroLogoMarquee } from "@/components/hero-logo-marquee";
@@ -885,6 +886,7 @@ function Education() {
       institution: "University of Staffordshire",
       location: "London, UK",
       qualification: "BSc. (Hons) in Computer Science (First Class Honours) — APIIT Sri Lanka",
+      logo: "/educationlogo/6E75-81A4-4594-BD53-5EAE.png",
       featured: true,
     },
     {
@@ -894,6 +896,7 @@ function Education() {
       location: "UK",
       qualification: "PGD in Marketing",
       note: "Currently in progress",
+      logo: "/educationlogo/CIM-4%201.png",
     },
     {
       num: "03",
@@ -901,6 +904,7 @@ function Education() {
       institution: "St. Anthony's College",
       location: "Kandy, SL",
       qualification: "G.C.E Advanced Level - Physical Science",
+      logo: "/educationlogo/St_Anthony%27s_College_Logo2.png",
     },
   ];
 
@@ -925,14 +929,14 @@ function Education() {
 
       <div className="mt-16 space-y-4">
         <Reveal delay={0.05}>
-          <article className="card-surface group relative overflow-hidden rounded-3xl border border-accent/25 p-8 md:p-10">
+          <article className="card-surface group relative overflow-hidden rounded-3xl border border-accent/25 p-5 md:p-6">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full glow-bg opacity-50 transition-opacity group-hover:opacity-80"
+              className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full glow-bg opacity-50 transition-opacity group-hover:opacity-80"
             />
-            <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-xs tracking-widest text-accent">({featured.num})</span>
                   {"note" in featured && featured.note ? (
                     <span className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
@@ -940,18 +944,27 @@ function Education() {
                     </span>
                   ) : null}
                 </div>
-                <h3 className="mt-4 font-display text-3xl uppercase leading-tight tracking-tight md:text-4xl lg:text-5xl">
+                <h3 className="mt-2 font-display text-2xl uppercase leading-tight tracking-tight md:text-3xl lg:text-4xl">
                   {featured.institution}
                 </h3>
-                <p className="mt-3 font-serif-italic text-lg text-foreground/90 md:text-xl">
+                <p className="mt-2 font-serif-italic text-base leading-snug text-foreground/90 md:text-lg">
                   {featured.qualification}
                 </p>
               </div>
               <div className="shrink-0 md:text-right">
-                <p className="font-serif-italic text-base text-foreground/80 md:text-lg">
+                {"logo" in featured && featured.logo ? (
+                  <Image
+                    src={featured.logo}
+                    alt={featured.institution}
+                    width={160}
+                    height={160}
+                    className="mb-2 ml-auto h-24 w-auto max-w-[12rem] object-contain md:h-28 md:max-w-[14rem]"
+                  />
+                ) : null}
+                <p className="font-serif-italic text-sm text-foreground/80 md:text-base">
                   {featured.when}
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   {featured.location}
                 </p>
               </div>
@@ -962,10 +975,10 @@ function Education() {
         <div className="grid gap-4 md:grid-cols-2">
           {completed.map((entry, i) => (
             <Reveal key={entry.num} delay={0.1 + i * 0.08}>
-              <article className="card-surface group relative h-full overflow-hidden rounded-3xl p-7 md:p-8">
+              <article className="card-surface group relative overflow-hidden rounded-3xl p-5 md:p-6">
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full glow-bg opacity-30 transition-opacity group-hover:opacity-55"
+                  className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full glow-bg opacity-30 transition-opacity group-hover:opacity-55"
                 />
                 <div className="relative">
                   <div className="flex items-start justify-between gap-4">
@@ -977,17 +990,23 @@ function Education() {
                         </span>
                       ) : null}
                     </div>
-                    <span className="text-right text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {entry.location}
-                    </span>
+                    {"logo" in entry && entry.logo ? (
+                      <Image
+                        src={entry.logo}
+                        alt={entry.institution}
+                        width={120}
+                        height={120}
+                        className="h-16 w-auto max-w-[7rem] shrink-0 object-contain md:h-20 md:max-w-[9rem]"
+                      />
+                    ) : null}
                   </div>
-                  <p className="mt-3 font-serif-italic text-sm text-muted-foreground">
+                  <p className="mt-2 font-serif-italic text-sm text-muted-foreground">
                     {entry.when}
                   </p>
-                  <h3 className="mt-4 font-display text-2xl uppercase leading-tight tracking-tight md:text-3xl">
+                  <h3 className="mt-2 font-display text-xl uppercase leading-tight tracking-tight md:text-2xl">
                     {entry.institution}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/85 md:text-[15px]">
+                  <p className="mt-2 text-sm leading-snug text-foreground/85">
                     {entry.qualification}
                   </p>
                 </div>
