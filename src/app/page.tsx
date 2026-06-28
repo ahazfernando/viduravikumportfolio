@@ -1059,12 +1059,21 @@ function Contact() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <a
-              href="mailto:ahazfernando@gmail.com"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-xs font-medium tracking-[0.15em] text-accent-foreground transition-transform hover:scale-105 sm:mt-10 sm:px-10 sm:py-4 sm:text-sm"
-            >
-              CONTACT ME
-            </a>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 sm:gap-4">
+              <a
+                href="mailto:ahazfernando@gmail.com"
+                className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-xs font-medium tracking-[0.15em] text-accent-foreground transition-transform hover:scale-105 sm:px-10 sm:py-4 sm:text-sm"
+              >
+                CONTACT ME
+              </a>
+              <a
+                href="/CV/AhazFernando-CV.pdf"
+                download="AhazFernando-CV.pdf"
+                className="inline-flex items-center justify-center rounded-full border border-foreground/40 px-8 py-3.5 text-xs font-medium tracking-[0.15em] transition-colors hover:bg-foreground hover:text-background sm:px-10 sm:py-4 sm:text-sm"
+              >
+                DOWNLOAD CV
+              </a>
+            </div>
           </Reveal>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 text-left sm:mt-20 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
