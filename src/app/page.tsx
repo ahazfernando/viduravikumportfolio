@@ -250,11 +250,11 @@ function WhatIBuild() {
 
   const projects = [
     {
-      title: "Australiana RV Repair",
-      tag: "Mobile Repair · AU",
-      url: "https://www.australianarv.com.au/mobile-repair-team",
-      img: "/images/project-australiana.png",
-      desc: "Service platform for a mobile RV repair team — booking flows, service pages and trust-driven storytelling across the site.",
+      title: "Caravan Works",
+      tag: "Caravan Repairs · VIC",
+      url: "https://www.caravanworks.com.au/",
+      img: "/images/project-caravanworks.png",
+      desc: "Workshop marketing site for an independent Victorian caravan specialist — clear repair process, service categories, and a booking-led enquiry funnel.",
     },
     {
       title: "Ignite Labs",
@@ -305,10 +305,7 @@ function WhatIBuild() {
 
       {/* Flagship card */}
       <Reveal delay={0.3}>
-        <div
-          className="mt-20 rounded-[2rem] overflow-hidden"
-          style={{ background: "linear-gradient(180deg, #1e1e2e 0%, #16161f 100%)" }}
-        >
+        <div className="mt-20 overflow-hidden rounded-[2rem] bg-black">
           {/* Top bar */}
           <div className="flex items-center justify-between px-6 md:px-10 py-5 border-b border-white/10">
             <div className="flex items-center gap-3">
@@ -317,7 +314,7 @@ function WhatIBuild() {
                 height="28"
                 viewBox="0 0 24 24"
                 fill="none"
-                className="text-accent shrink-0"
+                className="text-white/70 shrink-0"
               >
                 <path
                   d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
@@ -326,7 +323,7 @@ function WhatIBuild() {
                 />
                 <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <span className="section-label">SELECTED WORK</span>
+              <span className="text-xs tracking-[0.2em] uppercase text-white/60">SELECTED WORK</span>
             </div>
 
             {/* Nav tabs */}
@@ -336,7 +333,7 @@ function WhatIBuild() {
                   key={tab}
                   className={`px-4 py-2 text-xs tracking-wide rounded-full whitespace-nowrap ${
                     tab === "All"
-                      ? "bg-accent text-white"
+                      ? "bg-white text-black"
                       : "text-white/50 hover:text-white/80 cursor-pointer"
                   }`}
                 >
@@ -347,7 +344,7 @@ function WhatIBuild() {
 
             <div className="flex shrink-0 items-center gap-2">
               <div
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-accent"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/70"
                 aria-hidden
               >
                 <Layers className="h-4 w-4" strokeWidth={1.75} />
@@ -356,29 +353,23 @@ function WhatIBuild() {
           </div>
 
           {/* Content */}
-          <div className="relative py-10 md:py-14 overflow-hidden">
-            {/* Ambient glow + grid */}
+          <div className="relative overflow-hidden bg-black py-10 md:py-14">
             <div
               aria-hidden
-              className="pointer-events-none absolute -top-24 -left-20 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-40"
-              style={{ background: "radial-gradient(circle, var(--glow-blue), transparent 60%)" }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-[0.04]"
+              className="pointer-events-none absolute inset-0 opacity-[0.03]"
               style={{
                 backgroundImage:
-                  "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
+                  "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
                 backgroundSize: "48px 48px",
               }}
             />
 
-            <div className="relative z-10 bg-background px-6 md:px-10">
+            <div className="relative z-10 bg-black px-6 md:px-10">
               {/* Meta row */}
               <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
                 <div className="flex flex-wrap items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-white/40">
                   <span className="inline-flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />
                     Live Index
                   </span>
                   <span className="hidden md:inline h-px w-10 bg-white/15" />
@@ -394,11 +385,11 @@ function WhatIBuild() {
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-end">
                 <div>
                   <h3 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl text-white leading-[0.9] tracking-tight">
-                    FEAT<span className="accent-letter">U</span>RED
+                    FEAT<span className="font-serif-italic text-white/55 normal-case">U</span>RED
                     <br />
                     <span className="inline-flex items-baseline gap-4">
                       PROJECTS
-                      <span className="hidden md:inline-block font-serif-italic text-accent text-3xl md:text-4xl translate-y-[-0.5em] opacity-80">
+                      <span className="hidden md:inline-block font-serif-italic text-white/45 text-3xl md:text-4xl translate-y-[-0.5em]">
                         / vol.01
                       </span>
                     </span>
@@ -415,7 +406,7 @@ function WhatIBuild() {
                     Now Showing
                   </div>
                   <div className="font-display text-6xl text-white leading-none tabular-nums">
-                    <span className="text-accent">01</span>
+                    <span className="text-white">01</span>
                     <span className="text-white/30 text-3xl align-top ml-1">
                       / {projects.length.toString().padStart(2, "0")}
                     </span>
@@ -424,7 +415,7 @@ function WhatIBuild() {
                     {projects.map((_, i) => (
                       <span
                         key={i}
-                        className={`h-0.5 w-6 ${i === 0 ? "bg-accent" : "bg-white/20"}`}
+                        className={`h-0.5 w-6 ${i === 0 ? "bg-white" : "bg-white/20"}`}
                       />
                     ))}
                   </div>
@@ -436,8 +427,8 @@ function WhatIBuild() {
                 <div className="flex gap-10 whitespace-nowrap font-display uppercase text-white/30 text-sm tracking-[0.25em] [animation:ticker_30s_linear_infinite]">
                   {[...projects, ...projects, ...projects].map((p, i) => (
                     <span key={i} className="inline-flex items-center gap-10 shrink-0">
-                      <span className="hover:text-accent transition-colors">{p.title}</span>
-                      <span className="text-accent">✦</span>
+                      <span className="hover:text-white transition-colors">{p.title}</span>
+                      <span className="text-white/40">✦</span>
                     </span>
                   ))}
                 </div>
@@ -481,7 +472,7 @@ function ProjectCarousel({ projects }: { projects: Project[] }) {
 
   return (
     <div className="mt-10">
-      <div className="relative overflow-hidden rounded-2xl bg-card border border-white/10">
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black">
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
             key={page}
@@ -572,7 +563,7 @@ function ProjectCarousel({ projects }: { projects: Project[] }) {
             onClick={() => setState([i, i > page ? 1 : -1])}
             aria-label={`Go to page ${i + 1}`}
             className={`h-2.5 rounded-full transition-all ${
-              i === page ? "bg-accent w-8" : "bg-white/20 w-2.5 hover:bg-white/40"
+              i === page ? "bg-white w-8" : "bg-white/20 w-2.5 hover:bg-white/40"
             }`}
           />
         ))}
