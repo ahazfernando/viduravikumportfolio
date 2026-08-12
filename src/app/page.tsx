@@ -323,7 +323,9 @@ function WhatIBuild() {
                 />
                 <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <span className="text-xs tracking-[0.2em] uppercase text-white/60">SELECTED WORK</span>
+              <span className="text-xs tracking-[0.2em] uppercase text-white/60">
+                SELECTED WORK
+              </span>
             </div>
 
             {/* Nav tabs */}
@@ -395,8 +397,8 @@ function WhatIBuild() {
                     </span>
                   </h3>
                   <p className="mt-5 max-w-lg text-white/55 text-base md:text-lg leading-relaxed">
-                    A selection of recent client work from marketing sites to service platforms
-                    and brand experiences.
+                    A selection of recent client work from marketing sites to service platforms and
+                    brand experiences.
                   </p>
                 </div>
 
