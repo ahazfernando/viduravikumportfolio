@@ -71,7 +71,7 @@ function SectionLabel({ num, label }: { num: string; label: string }) {
   return (
     <Reveal>
       <p className="section-label">
-        ({num}) <span className="opacity-60">—</span> {label}
+        ({num}) {label}
       </p>
     </Reveal>
   );
@@ -373,7 +373,7 @@ function WhatIBuild() {
                     Live Index
                   </span>
                   <span className="hidden md:inline h-px w-10 bg-white/15" />
-                  <span>2021 — 2026</span>
+                  <span>2021-2026</span>
                   <span className="hidden md:inline h-px w-10 bg-white/15" />
                   <span>{projects.length.toString().padStart(2, "0")} Projects</span>
                 </div>
@@ -395,7 +395,7 @@ function WhatIBuild() {
                     </span>
                   </h3>
                   <p className="mt-5 max-w-lg text-white/55 text-base md:text-lg leading-relaxed">
-                    A selection of recent client work — from marketing sites to service platforms
+                    A selection of recent client work from marketing sites to service platforms
                     and brand experiences.
                   </p>
                 </div>
