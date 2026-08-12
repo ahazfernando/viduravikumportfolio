@@ -250,13 +250,6 @@ function WhatIBuild() {
 
   const projects = [
     {
-      title: "Equalizer RV",
-      tag: "Premium Caravans · AU",
-      url: "https://equalizerrv.com.au",
-      img: "/images/project-equalizer.png",
-      desc: "Marketing site for an Australian premium caravan brand — bold typography, immersive hero, and conversion-led product journeys.",
-    },
-    {
       title: "Australiana RV Repair",
       tag: "Mobile Repair · AU",
       url: "https://www.australianarv.com.au/mobile-repair-team",
@@ -282,7 +275,14 @@ function WhatIBuild() {
       tag: "Luxury Real Estate · AU",
       url: "https://sandrestateagents.com.au",
       img: "/images/project-sandr.png",
-      desc: "Brand-led web experience for Australia's most followed luxury real estate brand — cinematic hero, residential listings and consultation booking.",
+      desc: "Latest UI for Australia's most followed luxury real estate brand — cinematic hero, Melbourne & Sri Lanka markets, and consultation booking.",
+    },
+    {
+      title: "Homes By Design Group",
+      tag: "Architecture · Melbourne",
+      url: "https://homesbydesigngroup.com.au",
+      img: "/images/project-homesbydesign.png",
+      desc: "Elegant marketing site for a Melbourne design-build studio — cinematic residential photography, serif typography, and a clear project enquiry funnel.",
     },
   ];
 
